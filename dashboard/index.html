@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Indoor Air Quality &amp; Occupancy Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Indoor Air Quality &amp; Occupancy Dashboard</h1>
+    <p class="sub">Paired indoor and outdoor readings from testo 160 IAQ loggers, 15-minute interval.
+      Occupancy is inferred from CO<sub>2</sub>; it is a proxy, not a head count.</p>
+  </header>
+
+  <section class="cards" id="cards"></section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Average day</h2>
+      <div class="toggle" role="group" aria-label="Metric">
+        <button data-metric="co2" class="active">CO<sub>2</sub></button>
+        <button data-metric="temp">Temperature</button>
+        <button data-metric="rh">Humidity</button>
+      </div>
+    </div>
+    <canvas id="hourly" height="260"></canvas>
+    <p class="note" id="hourly-note"></p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Day by day</h2></div>
+    <canvas id="daily" height="260"></canvas>
+    <p class="note">Bars: daily peak indoor CO<sub>2</sub>. Line: daily mean indoor temperature. Hover for values.</p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Highest-CO<sub>2</sub> days</h2></div>
+    <table id="worst"><thead><tr><th>Date</th><th>Peak CO<sub>2</sub> (ppm)</th><th>Mean CO<sub>2</sub> (ppm)</th><th>Max indoor temp (&deg;C)</th><th>Likely occupied (h)</th></tr></thead><tbody></tbody></table>
+  </section>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+  <footer>Built by Shrey Singh &middot; Data Analytics in Building Sciences (AR32203), IIT Kharagpur</footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
